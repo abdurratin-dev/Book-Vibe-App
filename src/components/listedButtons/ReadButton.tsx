@@ -40,7 +40,16 @@ const ReadButton = ({ book }: ReadBookProps) => {
   };
   return (
     <button
-      className="w-32 rounded-xl btn btn-outline py-6 font-semibold text-gray-800 transition"
+      className="inline-flex items-center gap-2
+                  rounded-xl border-1 border-emerald-500
+                  sm:px-5 sm:py-3.5 px-3 py-2.5
+                  sm:text-sm text-[12px] font-bold text-emerald-500
+                  shadow-lg shadow-emerald-500/20
+                  transition-all duration-300
+                  hover:-translate-y-1
+                  hover:bg-emerald-500 hover:text-white
+                  hover:shadow-xl hover:shadow-emerald-500/25
+                  active:translate-y-0"
       onClick={hendaleReadButton}
     >
       Read

@@ -4,8 +4,13 @@ import React from "react";
 
 const ListedBook = () => {
   return (
-    <div className="container mx-auto py-7 grid gap-10">
-      <h3 className="flex items-center justify-center w-full h-30 bg-slate-200 text-3xl font-bold rounded-2xl">
+    <div className="container mx-auto px grid gap-10 px-4 py-12 md:px-12">
+      <h3 className="relative overflow-hidden rounded-3xl
+          bg-gradient-to-br from-slate-100 via-slate-50 to-slate-200
+          px-6 py-10
+          shadow-sm
+          sm:px-10 sm:py-14
+          lg:px-16 lg:py-16 text-2xl font-bold text-center">
         Books
       </h3>
       {/* name of each tab group should be unique */}

@@ -1,6 +1,6 @@
-'use client';
-import { BooksContext } from '@/context/BooksContext';
-import { useContext } from 'react';
+"use client";
+import { BooksContext } from "@/context/BooksContext";
+import { useContext } from "react";
 import {
   BarChart,
   Bar,
@@ -12,12 +12,19 @@ import {
   Label,
   LabelProps,
   Tooltip,
-} from 'recharts';
+} from "recharts";
 
-const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink', 'black'];
+const colors = [
+  "#0088FE",
+  "#00C49F",
+  "#FFBB28",
+  "#FF8042",
+  "red",
+  "pink",
+  "black",
+];
 
 // #region Sample data
-
 
 // #endregion
 const getPath = (x: number, y: number, width: number, height: number) => {
@@ -39,7 +46,7 @@ const TriangleBar = (props: BarShapeProps) => {
       stroke={color}
       fill={color}
       style={{
-        transition: 'stroke-width 0.3s ease-out',
+        transition: "stroke-width 0.3s ease-out",
       }}
     />
   );
@@ -51,34 +58,47 @@ const CustomColorLabel = (props: LabelProps) => {
 };
 
 export default function CustomShapeBarChart() {
-    const { readBooks } = useContext(BooksContext);
-    const data = readBooks.map((book) => ({
-        name: book.bookName,
-        pages: book.totalPages,
-      }))
-   
+  const { readBooks } = useContext(BooksContext);
+  const data = readBooks.map((book) => ({
+    name: book.bookName,
+    pages: book.totalPages,
+  }));
+  if (readBooks.length === 0) {
+    return (
+      <div className="container mx-auto px-8 py-10">
+      <div className="flex justify-center items-center sm:border-3 border-2 border-dashed border-gray-500 rounded-2xl h-120">
+        <p className="text-xl font-bold text-gray-500">0 Books in Read List</p>
+      </div>
+      </div>
+    );
+  }
   return (
     <div className="flex justify-center items-center h-screen">
-    <BarChart
-      style={{ width: '100%', maxWidth: '700px', maxHeight: '70vh', aspectRatio: 1.618 }}
-      responsive
-      data={data}
-      margin={{
-        top: 20,
-        right: 0,
-        left: 0,
-        bottom: 5,
-      }}
-    >
-      <CartesianGrid />
-      <Tooltip cursor={{ fillOpacity: 0.5 }} />
-      <XAxis dataKey="name" />
-      <YAxis width="auto" />
-      <Bar dataKey="pages" shape={TriangleBar} activeBar>
-        <LabelList content={CustomColorLabel} position="top" />
-      </Bar>
-      {/* <RechartsDevtools /> */}
-    </BarChart>
+      <BarChart
+        style={{
+          width: "100%",
+          maxWidth: "700px",
+          maxHeight: "70vh",
+          aspectRatio: 1.618,
+        }}
+        responsive
+        data={data}
+        margin={{
+          top: 20,
+          right: 0,
+          left: 0,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid />
+        <Tooltip cursor={{ fillOpacity: 0.5 }} />
+        <XAxis dataKey="name" />
+        <YAxis width="auto" />
+        <Bar dataKey="pages" shape={TriangleBar} activeBar>
+          <LabelList content={CustomColorLabel} position="top" />
+        </Bar>
+        {/* <RechartsDevtools /> */}
+      </BarChart>
     </div>
   );
 }
